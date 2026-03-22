@@ -3,7 +3,7 @@ pipeline {
     
     tools {
         jdk 'Java 17'
-        maven 'Maven-3.9'
+        maven 'Maven 3.9'
     }
 
     stages {
@@ -20,9 +20,38 @@ pipeline {
             }
         }
 
-        stage('Build Project') {
+        stage('mvn validate') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn validate'
+            }
+        }
+
+        stage('mvn compile') {
+            steps {
+                sh 'mvn compile'
+            }
+        }
+
+        stage('mvn test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('mvn package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        stage('mvn install') {
+            steps {
+                sh 'mvn install'
+            }
+        }
+
+        stage('mvn deploy') {
+            steps {
+                sh 'mvn deploy'
             }
         }
     }
